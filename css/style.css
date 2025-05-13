@@ -111,3 +111,18 @@ button:hover {
 .next {
     right: 10px;
 }
+
+.centered-text {
+  text-align: center;
+}
+
+/* Style for links inside centered sections or generally */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
