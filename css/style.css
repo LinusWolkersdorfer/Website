@@ -1,0 +1,113 @@
+/* Base layout: Dark mode theme */
+:root {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --accent-color: #1f8ef1;
+  --link-hover: #63b3ed;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+header, footer {
+  background-color: #1e1e1e;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+nav a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: var(--link-hover);
+}
+
+main {
+  padding: 2rem;
+}
+
+h1 {
+  color: var(--accent-color);
+}
+
+h2 {
+  text-align: center;  /* Centers the text horizontally */
+  color: var(--accent-color);
+}
+
+/* Style the responsive image container */
+.image-container {
+    width: 100%;                /* Make the container's width 100% of its parent element */
+    max-width: 600px;           /* Set a maximum width */
+    margin: 0 auto;             /* Center the container horizontally */
+    position: relative;         /* Position relative for the aspect ratio */
+    border: 5px solid #333;     /* Border around the container */
+}
+
+.image-container::before {
+    content: "";
+    display: block;
+    padding-top: 75%;           /* Maintain a 4:3 aspect ratio (you can adjust this) */
+}
+
+.image-container img {
+    position: absolute;         /* Position the image inside the container */
+    top: 0;
+    left: 0;
+    width: 100%;                /* Ensure the image takes up full width */
+    height: 100%;               /* Ensure the image takes up full height */
+    object-fit: cover;          /* Ensure the image covers the container */
+}
+
+/* Image gallery container */
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 80%;        /* Adjust width as needed */
+    max-width: 600px;  /* Maximum width */
+    margin: 0 auto;    /* Center the gallery */
+}
+
+/* Navigation buttons (left and right arrows) */
+button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    font-size: 24px;
+    border-radius: 50%;
+}
+
+button:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Positioning the buttons */
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}

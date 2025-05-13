@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linus Wolkersdorfer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Linus Wolkersdorfer - Muffin</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <header>
-        <h1>Home</h1>
+        <h1>Linus' Website</h1>
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -24,12 +24,46 @@
     <main>
         <section>
             <h2>Muffin</h2>
-                <img src="/media/img/muffin/muffin0.jpg" alt="Muffin Image">
+            <div class="image-gallery">
+                <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+                <div class="image-container">
+                    <img src="" alt="Muffin Image" id="muffinImage">
+                </div>
+                <button class="next" onclick="changeImage(1)">&#10095;</button>
+            </div>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2025 </p>
     </footer>
+
+    <script>
+        let muffinImages = [];
+        let currentImageIndex = 0;
+
+        fetch('/media/img/muffin/muffin-images.json')
+            .then(response => response.json())
+            .then(images => {
+                muffinImages = images.map(image => '/media/img/muffin/' + image);
+                updateImage();
+            })
+            .catch(error => console.error('Error fetching muffin images:', error));
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = muffinImages.length - 1;
+            } else if (currentImageIndex >= muffinImages.length) {
+                currentImageIndex = 0;
+            }
+            updateImage();
+        }
+
+        function updateImage() {
+            const imgElement = document.getElementById('muffinImage');
+            imgElement.src = muffinImages[currentImageIndex];
+        }
+    </script>
 </body>
 </html>

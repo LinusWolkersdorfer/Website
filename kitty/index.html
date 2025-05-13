@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linus Wolkersdorfer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Linus Wolkersdorfer - Kitty</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <header>
-        <h1>Home</h1>
+        <h1>Linus' Website</h1>
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -24,12 +24,46 @@
     <main>
         <section>
             <h2>Kitty</h2>
-            <img src="/media/img/kitty/kitty0.jpg" alt="Kitty Image">
+            <div class="image-gallery">
+                <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+                <div class="image-container">
+                    <img src="" alt="Kitty Image" id="kittyImage">
+                </div>
+                <button class="next" onclick="changeImage(1)">&#10095;</button>
+            </div>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2025 </p>
     </footer>
+
+    <script>
+        let kittyImages = [];
+        let currentImageIndex = 0;
+
+        fetch('/media/img/kitty/kitty-images.json')
+            .then(response => response.json())
+            .then(images => {
+                kittyImages = images.map(image => '/media/img/kitty/' + image);
+                updateImage();
+            })
+            .catch(error => console.error('Error fetching kitty images:', error));
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = kittyImages.length - 1;
+            } else if (currentImageIndex >= kittyImages.length) {
+                currentImageIndex = 0;
+            }
+            updateImage();
+        }
+
+        function updateImage() {
+            const imgElement = document.getElementById('kittyImage');
+            imgElement.src = kittyImages[currentImageIndex];
+        }
+    </script>
 </body>
 </html>
